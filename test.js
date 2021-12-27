@@ -140,7 +140,7 @@ let year = date_ob.getFullYear();
 
 var file = fs.createWriteStream('./cantons_test.md');
 file.on('error', function(err) { /* error handling */ });
-file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n|Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
+file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n\n|Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
 result.forEach(function(v) { 
     file.write("|" + v.canton + "|" + v.configured +"|"); 
     v.wmsAlive.forEach(function(alive) {
