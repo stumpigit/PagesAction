@@ -32,9 +32,6 @@ jobs:
     - name: Move files
       working-directory: ./testing
       run: |
-        echo "GH_WORKFLOW=${GITHUB_WORKFLOW}" >> ${GITHUB_ENV}
-        echo "GH_JOB=${GITHUB_JOB}" >> ${GITHUB_ENV}
-        echo "GH_RUN_NUMBER=${GITHUB_RUN_NUMBER}" >> ${GITHUB_ENV}
         mkdir ./test-results
         mv ./cantons_test.md ./test-results/
         echo pwd ./test-results/
