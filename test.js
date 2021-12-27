@@ -126,9 +126,21 @@ console.log(result);
 
 console.log("Writing result to markdown");
 
+let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+
 var file = fs.createWriteStream('./cantons_test.md');
 file.on('error', function(err) { /* error handling */ });
-file.write("# Cantons Test Output\nRun on 2021/12/23\n## Results\n|Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
+file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n|Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
 result.forEach(function(v) { 
     file.write("|" + v.canton + "|" + v.configured +"|"); 
     v.wmsAlive.forEach(function(alive) {
