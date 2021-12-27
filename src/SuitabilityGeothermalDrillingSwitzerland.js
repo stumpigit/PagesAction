@@ -496,10 +496,7 @@ export async function TestAllCantons() {
     // const cantonAbbrevList = ['ZG']; //for debug 
 
     for (const cantonAbbrev of cantonAbbrevList) {
-        if (cantonAbbrev=="FR")
-        {
-            console.log("OK");
-        }
+
         const configured = _.contains(cantonNames, cantonAbbrev);
         let wmsAlive = [];
 
