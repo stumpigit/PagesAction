@@ -32,14 +32,21 @@ jobs:
     - name: Move files
       working-directory: ./testing
       run: |
+        echo "GH_WORKFLOW=${GITHUB_WORKFLOW}" >> ${GITHUB_ENV}
+        echo "GH_JOB=${GITHUB_JOB}" >> ${GITHUB_ENV}
+        echo "GH_RUN_NUMBER=${GITHUB_RUN_NUMBER}" >> ${GITHUB_ENV}
         mkdir ./test-results
         mv ./cantons_test.md ./test-results/
         pwd ./test-results/
         ls -l ./test-results/
+    - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: ./test-results
     - name: Deploy
-      working-directory: ./testing
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./test-results
+        publish_dir: 'test-results'
 
