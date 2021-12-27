@@ -31,8 +31,9 @@ jobs:
     - run: npm test
     - name: Move files
       run: |
-        mkdir ./test-results
-        mv ./cantons_test.md ./test-results/
+        mkdir ${HOME}/test-results
+        mv ./cantons_test.md ${HOME}/test-results/
+        echo "${HOME}"
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
