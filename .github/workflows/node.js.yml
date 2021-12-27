@@ -35,9 +35,11 @@ jobs:
         mv ./cantons_test.md ~/test-results/
         ls -l ~/test-results/
         pwd ~/test-results
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy to GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        target_branch: gh-pages
+        build_dir: test-results
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
