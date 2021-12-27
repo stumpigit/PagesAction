@@ -1,6 +1,7 @@
 # Cantons Test Output
 Run on 2021/12/27
 ## Results
+
 |Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|
 |----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|
 |AG|true|https://bfe-cors-anywhere.herokuapp.com/https://www.ag.ch/geoportal/services/afu_erdwaerme/MapServer/WMSServer|true|true|true|
