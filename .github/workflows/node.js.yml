@@ -31,14 +31,10 @@ jobs:
     - run: npm test
     - name: Move files
       run: |
-        mkdir public
-        mv ./cantons_test.md public/
-        mv ./documentation.md public/
-        ls -l public/
-        pwd public
+        mv ./cantons_test.md docs/
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.7
       with:
         branch: gh-pages
-        folder: public
+        folder: docs
 
