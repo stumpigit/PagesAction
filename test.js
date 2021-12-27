@@ -140,26 +140,30 @@ let year = date_ob.getFullYear();
 
 var file = fs.createWriteStream('./cantons_test.md');
 file.on('error', function(err) { /* error handling */ });
-file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n\n|Canton|Working|Configured|WMS|GetCapabilities|GetFeature|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
+file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n\n|Canton|Result expected|Configured|WMS|GetCapabilities|GetFeature|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
 result.forEach(function(v) { 
     let outputline = "";
-    let header = "|" + v.canton + "|" + v.configured;
+    let header = "|" + v.canton;
 
     //file.write("|" + v.canton + "|" + v.configured +"|"); 
     v.wmsAlive.forEach(function(alive) {
-        if (v.wmsAlive[0].expectedResult==true) {
-            outputline = header + "|<span style='color:green'>"+  v.wmsAlive[0].expectedResult +"</span>|" + v.wmsAlive[0].wms + "|" + v.wmsAlive[0].aliveGetCap + "|" + v.wmsAlive[0].aliveGetFeat + "|"
+        if (alive.expectedResult==true) {
+            outputline = header + "|<span style='color:green;'>"+  alive.expectedResult +"</span>|" + v.configured + "|" +  alive.wms + "|" + alive.aliveGetCap + "|" + alive.aliveGetFeat + "|";
         }
         else if (v.configured==false) {
-            outputline += header + "|<span style='color:grey'>"+  v.wmsAlive[0].expectedResult +"</span>|" + v.wmsAlive[0].wms + "|" + v.wmsAlive[0].aliveGetCap + "|" + v.wmsAlive[0].aliveGetFeat + "|"
+            outputline += header + "|<span style='color:grey;'>"+  alive.expectedResult +"</span>|" + v.configured + "||||";
+        }
+        else if (alive.expectedResult=="undefinde")
+        {
+            outputline += header + "|<span style='color:grey;'>"+  alive.expectedResult +"</span>|" + v.configured + "|" + alive.wms + "|" + alive.aliveGetCap + "|" + alive.aliveGetFeat + "|";
         }
         else {
-            outputline += header + "|<span style='color:red'>"+  v.wmsAlive[0].expectedResult +"</span>|" + v.wmsAlive[0].wms + "|" + v.wmsAlive[0].aliveGetCap + "|" + v.wmsAlive[0].aliveGetFeat + "|"
+            outputline += header + "|<span style='color:red;'>"+  alive.expectedResult +"</span>|" + v.configured + "|" + alive.wms + "|" + alive.aliveGetCap + "|" + alive.aliveGetFeat + "|";
         }
 
         file.write(outputline);
+        file.write("\n");
     })
-    file.write("\n");
 });
 file.end();
 
