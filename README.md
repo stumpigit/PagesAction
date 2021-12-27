@@ -1,5 +1,8 @@
 # SuitabilityGeothermalDrillingSwitzerland
 
+[![Node.js CI](https://github.com/SFOE/SuitabilityGeothermalDrillingSwitzerland/actions/workflows/node.js.yml/badge.svg)](https://github.com/SFOE/SuitabilityGeothermalDrillingSwitzerland/actions/workflows/node.js.yml)
+
+## First steps
 On first check out run
 ```
 npm install
@@ -7,8 +10,8 @@ npm install
 to load all node_modules.
 
 
-
-This project has been created using **webpack-cli**, you can then run
+## Building the application
+This project has been created using **webpack-cli**, you can run
 
 ```
 npm run build
@@ -22,3 +25,9 @@ npm run serve
 
 to start the application on localhost 🚀
 
+## Running with Node.js
+Run 
+```
+node .\test.js
+```
+to work and debug in Node.js.

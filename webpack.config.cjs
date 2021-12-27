@@ -46,6 +46,10 @@ module.exports = {
   experiments: {
     topLevelAwait: true
   },
+  output: {
+    filename: 'SuitabilityGeothermalDrillingSwitzerland.min.js'
+    // chunkFilename: 'bfe-lib.js',
+  },
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
@@ -53,6 +57,11 @@ module.exports = {
     compress: true,
     port: 9000,
   },
+  externals:{
+    fs:    "{}",
+    jsdom:  "{}",
+    fetch: "{}"
+},
   plugins: [
     new CopyPlugin({
       patterns: [
