@@ -124,8 +124,12 @@ import fs from 'fs';
 let result = await TestAllCantons();
 console.log(result);
 
+var dir = './test-results';
 
-var file = fs.createWriteStream('test-results/cantons_test.md');
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+var file = fs.createWriteStream('./test-results/cantons_test.md');
 file.on('error', function(err) { /* error handling */ });
 file.write("# Cantons Test Output\nRun on 2021/12/23\n## Results\n|Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
 result.forEach(function(v) { 
