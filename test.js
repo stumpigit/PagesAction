@@ -124,14 +124,7 @@ import fs from 'fs';
 let result = await TestAllCantons();
 console.log(result);
 
-var dir = './test-results';
-
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
-}
-
-console.log("Writing result to markdown: ");
-console.log(dir);
+console.log("Writing result to markdown");
 
 var file = fs.createWriteStream('./cantons_test.md');
 file.on('error', function(err) { /* error handling */ });
