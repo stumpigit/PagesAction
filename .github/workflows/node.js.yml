@@ -29,10 +29,12 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - run: jsdoc2md src/SuitabilityGeothermalDrillingSwitzerland.js > documentation.md
     - name: Move files
       run: |
         mkdir public
         mv ./cantons_test.md public/
+        mv ./documentation.md public/
         ls -l public/
         pwd public
     - name: Deploy to GitHub Pages

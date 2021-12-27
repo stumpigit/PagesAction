@@ -140,11 +140,24 @@ let year = date_ob.getFullYear();
 
 var file = fs.createWriteStream('./cantons_test.md');
 file.on('error', function(err) { /* error handling */ });
-file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n\n|Canton|Configured|WMS|GetCapabilities|GetFeature|ExpectedValue|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
+file.write("# Cantons Test Output\nRun on "+year+"/"+month+"/"+ date + "\n## Results\n\n|Canton|Working|Configured|WMS|GetCapabilities|GetFeature|\n|----------------|-------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|\n")
 result.forEach(function(v) { 
-    file.write("|" + v.canton + "|" + v.configured +"|"); 
+    let outputline = "";
+    let header = "|" + v.canton + "|" + v.configured;
+
+    //file.write("|" + v.canton + "|" + v.configured +"|"); 
     v.wmsAlive.forEach(function(alive) {
-        file.write(alive.wms + "|" + alive.aliveGetCap + "|" + alive.aliveGetFeat + "|" +  alive.expectedResult +"|");
+        if (v.wmsAlive[0].expectedResult==true) {
+            outputline = header + "|<span style='color:green'>"+  v.wmsAlive[0].expectedResult +"</span>|" + v.wmsAlive[0].wms + "|" + v.wmsAlive[0].aliveGetCap + "|" + v.wmsAlive[0].aliveGetFeat + "|"
+        }
+        else if (v.configured==false) {
+            outputline += header + "|<span style='color:grey'>"+  v.wmsAlive[0].expectedResult +"</span>|" + v.wmsAlive[0].wms + "|" + v.wmsAlive[0].aliveGetCap + "|" + v.wmsAlive[0].aliveGetFeat + "|"
+        }
+        else {
+            outputline += header + "|<span style='color:red'>"+  v.wmsAlive[0].expectedResult +"</span>|" + v.wmsAlive[0].wms + "|" + v.wmsAlive[0].aliveGetCap + "|" + v.wmsAlive[0].aliveGetFeat + "|"
+        }
+
+        file.write(outputline);
     })
     file.write("\n");
 });
