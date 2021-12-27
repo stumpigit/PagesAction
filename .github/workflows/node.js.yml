@@ -34,9 +34,10 @@ jobs:
         mkdir ${HOME}/test-results
         mv ./cantons_test.md ${HOME}/test-results/
         echo "${HOME}"
+        ls -l ${HOME}/test-results/
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ${HOME}/test-results
+        publish_dir: test-results
 
