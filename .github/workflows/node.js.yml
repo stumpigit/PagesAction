@@ -37,7 +37,7 @@ jobs:
         echo "GH_RUN_NUMBER=${GITHUB_RUN_NUMBER}" >> ${GITHUB_ENV}
         mkdir ./test-results
         mv ./cantons_test.md ./test-results/
-        pwd ./test-results/
+        echo pwd ./test-results/
         ls -l ./test-results/
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
