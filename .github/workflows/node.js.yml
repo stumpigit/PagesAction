@@ -34,7 +34,6 @@ jobs:
       run: |
         mkdir ./test-results
         mv ./cantons_test.md ./test-results/
-        echo pwd ./test-results/
         ls -l ./test-results/
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
